@@ -1,0 +1,25 @@
+{
+  "name": "css-font-local-cache",
+  "version": "1.0.0",
+  "description": "google-fonts-local-cache",
+  "main": "index.js",
+  "bin": "bin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kiril Vatev <vatev.1@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "css": "^3.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catdad-experiments/css-font-local-cache.git"
+  },
+  "bugs": {
+    "url": "https://github.com/catdad-experiments/css-font-local-cache/issues"
+  },
+  "homepage": "https://github.com/catdad-experiments/css-font-local-cache#readme"
+}
