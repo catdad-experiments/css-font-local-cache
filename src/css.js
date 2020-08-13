@@ -1,6 +1,6 @@
 const css = require('css');
 
-const getLocalSrc = src => {
+const getLocalSrc = async src => {
   const rules = [];
 
   for (const rule of src.split(',')) {
@@ -15,14 +15,12 @@ const getLocalSrc = src => {
   return rules.length ? rules.join(' ,') : src;
 };
 
-const mutateFontFace = rule => {
+const mutateFontFace = async rule => {
   for (const declaration of rule.declarations) {
     if (declaration.property === 'src') {
-      declaration.value = getLocalSrc(declaration.value);
+      declaration.value = await getLocalSrc(declaration.value);
     }
   }
-
-  return rule;
 };
 
 module.exports = async text => {
@@ -30,7 +28,7 @@ module.exports = async text => {
 
   for (const rule of ast.stylesheet.rules) {
     if (rule.type === 'font-face') {
-      mutateFontFace(rule);
+      await mutateFontFace(rule);
     }
   }
 
