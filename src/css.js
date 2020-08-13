@@ -1,6 +1,5 @@
 const css = require('css');
 const fetch = require('node-fetch');
-const FileType = require('file-type');
 
 const getBase64Response = async url => {
   const res = await fetch(url);
@@ -9,8 +8,8 @@ const getBase64Response = async url => {
     throw new Error(`failed to fetch "${url}": ${res.status} ${res.statusText}`);
   }
 
+  const mime = res.headers.get('content-type');
   const buffer = await res.buffer();
-  const { mime } = await FileType.fromBuffer(buffer);
 
   return `data:${mime};charset=utf-8;base64,${buffer.toString('base64')}`;
 };

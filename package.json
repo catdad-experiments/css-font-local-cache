@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "css": "^3.0.0",
-    "file-type": "^14.7.1",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
