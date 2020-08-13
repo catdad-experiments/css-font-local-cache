@@ -1,4 +1,19 @@
 const css = require('css');
+const fetch = require('node-fetch');
+const FileType = require('file-type');
+
+const getBase64Response = async url => {
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(`failed to fetch "${url}": ${res.status} ${res.statusText}`);
+  }
+
+  const buffer = await res.buffer();
+  const { mime } = await FileType.fromBuffer(buffer);
+
+  return `data:${mime};charset=utf-8;base64,${buffer.toString('base64')}`;
+};
 
 const getLocalSrc = async src => {
   const rules = [];
@@ -8,7 +23,7 @@ const getLocalSrc = async src => {
 
       if (match) {
           const [, url, suffix] = match;
-          rules.push(`url(${url})${suffix}`);
+          rules.push(`url(${await getBase64Response(url)})${suffix}`);
       }
   }
 
