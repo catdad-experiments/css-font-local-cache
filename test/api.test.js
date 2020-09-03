@@ -2,6 +2,7 @@ const http = require('http');
 
 const { expect } = require('chai');
 const getPort = require('get-port');
+const safe = require('safe-await');
 
 const lib = require('../');
 
@@ -99,7 +100,28 @@ describe('API', () => {
     expect(result).to.equal(css);
   });
 
-  it('returns the original css string if @font-face elements do not contain fonts');
+  it('returns the original css string if @font-face elements do not contain fonts', async () => {
+    const css = `@font-face {
+  font-family: 'Fake Font';
+  src: local('Fake Font Regular'), local('FakeFont-Regular');
+}`;
 
-  it('errors if it cannot fetch a defined font');
+    const result = await lib(css);
+
+    expect(result).to.equal(css);
+  });
+
+  it('errors if it cannot fetch a defined font', async () => {
+    const fontname = `/font-${Math.random()}.woff2`;
+
+    const css = `@font-face {
+  font-family: 'Fake Font';
+  src: url(http://localhost:${port}${fontname}) format('woff2');
+}`;
+
+    const [err] = await safe(lib(css));
+
+    expect(err).to.be.instanceOf(Error)
+      .and.to.have.property('message', `failed to fetch "http://localhost:${port}${fontname}": 404 Not Found`);
+  });
 });
