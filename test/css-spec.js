@@ -122,4 +122,11 @@ module.exports = (convert) => {
     expect(err).to.be.instanceOf(Error)
       .and.to.have.property('message', `failed to fetch "http://localhost:${port}${fontname}": 404 Not Found`);
   });
+
+  it('errors when the provided content is not css', async () => {
+    const [err] = await safe(convert('butts'));
+
+    expect(err).to.be.instanceOf(Error)
+      .and.to.have.property('message', 'the provided text is not valid css');
+  });
 };
