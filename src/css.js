@@ -18,12 +18,12 @@ const getLocalSrc = async src => {
   const rules = [];
 
   for (const rule of src.split(',')) {
-      const match = rule.trim().match(/^url\(['"]?([^)]+)['"]?\)(.+)?/);
+    const match = rule.trim().match(/^url\(['"]?([^)]+)['"]?\)(.+)?/);
 
-      if (match) {
-          const [, url, suffix] = match;
-          rules.push(`url(${await getBase64Response(url)})${suffix}`);
-      }
+    if (match) {
+      const [, url, suffix] = match;
+      rules.push(`url(${await getBase64Response(url)})${suffix}`);
+    }
   }
 
   return rules.length ? rules.join(' ,') : src;
