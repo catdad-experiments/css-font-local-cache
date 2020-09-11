@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const UserAgents = require('user-agents');
+
 const css = require('./src/css.js');
 const fetch = require('./src/fetch-success.js');
 
@@ -16,7 +18,11 @@ const readStdin = async () => {
 };
 
 const readUrl = async () => {
-  const { body } = await fetch(cssUrl);
+  const userAgent = new UserAgents(/Chrome/);
+
+  const { body } = await fetch(cssUrl, {
+    'user-agent': userAgent
+  });
 
   return body.toString();
 };

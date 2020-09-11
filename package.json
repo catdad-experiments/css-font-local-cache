@@ -21,7 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "css": "^3.0.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "user-agents": "^1.0.559"
   },
   "devDependencies": {
     "chai": "^4.2.0",
