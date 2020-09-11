@@ -1,17 +1,12 @@
 const css = require('css');
-const fetch = require('node-fetch');
+const fetch = require('./fetch-success.js');
 
 const getBase64Response = async url => {
-  const res = await fetch(url);
+  const { body, headers } = await fetch(url);
 
-  if (!res.ok) {
-    throw new Error(`failed to fetch "${url}": ${res.status} ${res.statusText}`);
-  }
+  const mime = headers.get('content-type');
 
-  const mime = res.headers.get('content-type');
-  const buffer = await res.buffer();
-
-  return `data:${mime};charset=utf-8;base64,${buffer.toString('base64')}`;
+  return `data:${mime};charset=utf-8;base64,${body.toString('base64')}`;
 };
 
 const getLocalSrc = async src => {
@@ -38,7 +33,13 @@ const mutateFontFace = async rule => {
 };
 
 module.exports = async text => {
-  const ast = css.parse(text);
+  let ast;
+
+  try {
+    ast = css.parse(text);
+  } catch (err) {
+    throw new Error('the provided text is not valid css');
+  }
 
   for (const rule of ast.stylesheet.rules) {
     if (rule.type === 'font-face') {
