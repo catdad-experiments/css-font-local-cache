@@ -7,7 +7,7 @@ env:
   FORCE_COLOR: 1
 
 jobs:
-  "node test":
+  node-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
