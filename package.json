@@ -1,13 +1,21 @@
 {
   "name": "css-font-local-cache",
   "version": "1.0.0",
-  "description": "google-fonts-local-cache",
+  "description": "encode fonts directly into css text for offline use",
   "main": "index.js",
   "bin": "bin.js",
   "scripts": {
     "test": "cross-env NODE_NO_WARNINGS=1 mocha test/**/*.test.js"
   },
-  "keywords": [],
+  "keywords": [
+    "css",
+    "font",
+    "local fonts",
+    "base64",
+    "google fonts",
+    "font cache",
+    "offline fonts"
+  ],
   "author": "Kiril Vatev <vatev.1@gmail.com>",
   "license": "ISC",
   "dependencies": {
@@ -29,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/catdad-experiments/css-font-local-cache/issues"
   },
-  "homepage": "https://github.com/catdad-experiments/css-font-local-cache#readme"
+  "homepage": "https://github.com/catdad-experiments/css-font-local-cache#readme",
+  "engines": {
+    "node": ">=10.0.0"
+  }
 }
