@@ -15,7 +15,9 @@
     "base64",
     "google fonts",
     "font cache",
-    "offline fonts"
+    "offline fonts",
+    "app",
+    "electron"
   ],
   "author": "Kiril Vatev <vatev.1@gmail.com>",
   "license": "ISC",
