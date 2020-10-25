@@ -8,6 +8,11 @@
     "lint": "eslint bin.js index.js src test",
     "test": "cross-env NODE_NO_WARNINGS=1 mocha test/**/*.test.js"
   },
+  "files": [
+    "index.js",
+    "bin.js",
+    "src"
+  ],
   "keywords": [
     "css",
     "font",
