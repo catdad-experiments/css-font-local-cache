@@ -42,5 +42,5 @@ npx css-font-local-cache < css-with-links.css > css-with-base64-fonts.css
 Encode CSS from a remote location:
 
 ```bash
-npx css-font-loca-cache http://example.com/my-css > css-with-base64-fontd.css
+npx css-font-local-cache http://example.com/my-css > css-with-base64-fontd.css
 ```
