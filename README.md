@@ -15,7 +15,7 @@ Allow using fonts linked in your CSS offline by enconding them in base64 into th
 ## Install
 
 ```bash
-npm install css-font-loca-cache
+npm install css-font-local-cache
 ```
 
 ## API
